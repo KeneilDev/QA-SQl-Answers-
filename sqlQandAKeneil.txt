@@ -1,0 +1,53 @@
+1.Using COUNT, get the number of cities in the USA.
+SELECT COUNT(CountryCode) FROM city WHERE CountryCode=’USA’;
+
+2.Find out what the population and average life expectancy for people in Argentina (ARG) is. 
+SELECT LIFeExpectancy, Population FROM country WHERE Code='ARG';
+
+3.Using IS NOT NULL, ORDER BY, LIMIT, what country has the highest life expectancy?
+SELECT Name, LifeExpectancy FROM country WHERE LifeExpectancy IS NOT NULL ORDER BY LifeExpectancy DESC LIMIT 1;
+
+6.Select 25 cities around the world that start with the letter 'F' in a single SQL query.
+SELECT Name FROM city WHERE Name LIKE 'F%' LIMIT 25;
+
+7.Using COUNT, get the number of cities in China.
+SELECT COUNT(Name) AS "Number of cities in China" FROM city WHERE CountryCode='CHN';
+
+8.Using IS NOT NULL, ORDER BY, & LIMIT, what country has the lowest population?
+SELECT Name FROM country WHERE IndepYear IS NOT NULL ORDER BY Population ASC LIMIT 1;
+
+9.Using aggregation, return the number of countries in the database.
+SELECT COUNT(Name) FROM country;
+
+10.What are the top ten largest countries by population?
+SELECT Name FROM country ORDER BY Population DESC LIMIT 10;
+
+11.List the top five largest cities in Japan.
+SELECT Name FROM city WHERE CountryCode='JPN' ORDER BY Population DESC LIMIT 5;
+
+12.List the names and country codes of every country which has Elizabeth II as its Head of State.
+SELECT Name, Code FROM country WHERE HeadOfState='Elisabeth II';
+
+13.List the top ten countries which have the smallest population-to-area ratio. 
+SELECT Name FROM country ORDER BY (Population/SurfaceArea) ASC LIMIT 10;
+
+14.List every unique world language, according to the World database.
+SELECT DISTINCT Language FROM countrylanguage;
+
+15.What are the top 10 richest countries by GDP? 
+SELECT Name FROM country ORDER BY GNP DESC LIMIT 10;
+
+16.What are the top 10 largest countries by surface area? 
+SELECT Name  FROM country ORDER BY SurfaceArea DESC LIMIT 10;
+
+17.List every country where over 50% of its population can speak French. 
+SELECT Name FROM country WHERE Code IN (SELECT CountryCode FROM countrylanguage WHERE Percentage > 50 AND Language='French');
+
+18.Which country has the worst life expectancy? 
+SELECT Name FROM country WHERE LifeExpectancy IS NOT NULL ORDER BY LifeExpectancy ASC LIMIT 1;
+
+19.What is the most common government form?
+SELECT GovernmentForm FROM country GROUP BY GovernmentForm ORDER BY COUNT(code) DESC LIMIT 1;
+
+20.How many countries have gained independence since records began? 
+SELECT COUNT(Code) FROM country WHERE IndepYear IS NOT NUL
